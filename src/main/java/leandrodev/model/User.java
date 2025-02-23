@@ -1,9 +1,8 @@
 package leandrodev.model;
 
 import jakarta.persistence.*;
-
-
 import java.util.UUID;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -12,8 +11,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String name;
-    private String email;
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Vote> votes; // Remove votos ao excluir o usuário
 
     public UUID getId() {
         return id;
@@ -23,19 +25,11 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
