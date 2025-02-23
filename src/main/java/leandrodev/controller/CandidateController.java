@@ -2,6 +2,7 @@ package leandrodev.controller;
 
 import leandrodev.model.Candidate;
 import leandrodev.service.CandidateService;
+import leandrodev.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,33 +16,55 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
-    // 🔍 Buscar todos os candidatos
+
     @GetMapping
     public List<Candidate> getAllCandidates() {
-        return candidateService.getAllCandidates();
+        try {
+            return candidateService.getAllCandidates();
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Nenhum candidato encontrado");
+        }
     }
 
-    // 🔍 Buscar candidato por ID
+
     @GetMapping("/{id}")
     public Candidate getCandidateById(@PathVariable UUID id) {
-        return candidateService.getCandidateById(id);
+        try {
+            return candidateService.getCandidateById(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Candidato com ID " + id + " não encontrado");
+        }
     }
 
-    // ✅ Criar candidato
+
     @PostMapping
     public Candidate createCandidate(@RequestBody Candidate candidate) {
-        return candidateService.createCandidate(candidate);
+        try {
+            return candidateService.createCandidate(candidate);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Erro ao criar candidato: " + e.getMessage());
+        }
     }
 
-    // ✏️ Atualizar candidato
+
     @PutMapping("/{id}")
     public Candidate updateCandidate(@PathVariable UUID id, @RequestBody Candidate updatedCandidate) {
-        return candidateService.updateCandidate(id, updatedCandidate);
+        try {
+            return candidateService.updateCandidate(id, updatedCandidate);
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Candidato com ID " + id + " não encontrado");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Erro ao atualizar candidato: " + e.getMessage());
+        }
     }
 
-    // 🗑️ Deletar candidato
+
     @DeleteMapping("/{id}")
     public void deleteCandidate(@PathVariable UUID id) {
-        candidateService.deleteCandidate(id);
+        try {
+            candidateService.deleteCandidate(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Candidato com ID " + id + " não encontrado");
+        }
     }
 }

@@ -4,7 +4,6 @@ import leandrodev.exception.ResourceNotFoundException;
 import leandrodev.model.Candidate;
 import leandrodev.model.User;
 import leandrodev.model.Vote;
-
 import leandrodev.repositery.CandidateRepository;
 import leandrodev.repositery.UserRepository;
 import leandrodev.repositery.VoteRepository;
@@ -26,10 +25,12 @@ public class VoteService {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    // ✅ Criar voto
+
     public Vote createVote(UUID userId, UUID candidateId) {
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+
 
         Candidate candidate = candidateRepository.findById(candidateId)
                 .orElseThrow(() -> new ResourceNotFoundException("Candidato não encontrado"));
@@ -41,8 +42,13 @@ public class VoteService {
         return voteRepository.save(vote);
     }
 
-    // ✅ Listar todos os votos
+
     public List<Vote> getAllVotes() {
-        return voteRepository.findAll();
+
+        List<Vote> votes = voteRepository.findAll();
+        if (votes.isEmpty()) {
+            throw new ResourceNotFoundException("Nenhum voto encontrado");
+        }
+        return votes;
     }
 }
