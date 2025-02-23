@@ -21,7 +21,7 @@ public class VoteController {
         return voteService.createVote(userId, candidateId);
     }
 
-    // ✅ Listar todos os votos
+    
     @GetMapping
     public List<Vote> getAllVotes() {
         return voteService.getAllVotes();
