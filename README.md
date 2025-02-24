@@ -4,7 +4,7 @@
 Este é um projeto simples de votação desenvolvido com Spring Boot, permitindo que usuários votem em candidatos registrados no sistema.  
 
 **Tecnologias Utilizadas**  
-- Java 17  
+- Java 21  
 - Spring Boot  
 - Spring Data JPA  
 - Banco de Dados  MySQL  
