@@ -36,4 +36,4 @@ Este é um projeto simples de votação desenvolvido com Spring Boot, permitindo
 - Melhorar a estrutura do banco de dados para suportar alta demanda  
 
 **Autor**  
-Leandro  
+LeandroBryto
