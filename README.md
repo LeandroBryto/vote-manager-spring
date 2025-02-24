@@ -33,7 +33,23 @@ Este é um projeto simples de votação desenvolvido com Spring Boot, permitindo
 - Implementar autenticação e autorização para garantir segurança  
 - Adicionar paginação nos endpoints de listagem  
 - Melhorar o tratamento de erros para mensagens mais detalhadas  
-- Melhorar a estrutura do banco de dados para suportar alta demanda  
+- Melhorar a estrutura do banco de dados para suportar alta demanda
+
+- Testes Unitários Implementados
+
+Adicionei testes unitários para garantir o funcionamento adequado das funcionalidades do sistema. Os testes abrangem:
+
+Testes para o endpoint de candidatos
+
+Teste de criação, atualização, remoção e listagem de candidatos.
+Verificação se o candidato foi corretamente adicionado e retornado pelos endpoints.
+Testes para o endpoint de votos
+
+Verificação se o voto é registrado corretamente.
+Testes para verificar se a quantidade de votos de um candidato é atualizada após o voto.
+Testes para tratamento de erros
+
+Testes para garantir que erros como 404 e 400 são retornados corretamente quando um recurso não é encontrado ou quando a requisição é inválida.
 
 **Autor**  
 LeandroBryto
