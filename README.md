@@ -1,4 +1,4 @@
-**Projeto de Votação - Spring Boot**
+**PROJETO DE VOTAÇÃO - SPRING BOOT**
 
 **Descrição**  
 Este é um projeto simples de votação desenvolvido com Spring Boot, permitindo que usuários votem em candidatos registrados no sistema.  
